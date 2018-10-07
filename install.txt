@@ -1,0 +1,47 @@
+#####################################################################
+#																	#
+#		  	  !!! USE THIS SCRIPT ON YOUR OWN RISK !!!				#
+#					   !!! I DONT CARE !!!							#
+#																	#
+#####################################################################
+#																	#
+#	!!! YOU NEED TO EDIT THE SERVER CONTROLLER START *.bat !!!		#
+#																	#
+#	  This script is writen for uaseco, for other controllers 		#
+#	  you have to change more of this code.							#
+#																	#
+#	I highly recomend to use Notepad++ for script editing			#
+#																	#
+#	@ webrequest.bat 	add at top of code "title webrequest"		#
+#	@ uaseco.bat		add at top of code "title uaseco"			#
+#																	#
+#	This will give this .bat files a window title wich is needed	#
+#	to find the required programm to kill it.						#
+#	                                                                #
+#                                                                   #
+#                                                                   #
+#	No UASECO output if u want it, open "shedule restart.bat"       #
+#	and go to line 149 and delete the ">NUL"                        #
+#                                                                   #
+#                                                                   #
+#																	#
+#	To configurate this script for your needs, go to config.txt		#
+#	there you can edit all the directoys and config files			#
+#																	#
+#	Author: SK														#
+#																	#
+#####################################################################
+#                                                                   #
+#	Place this folder wherever you want and edit config.txt         #
+#                                                                   #
+#	Style of Config.txt                                             #
+#                                                                   #
+#	Line1   : Dedicated Server root                                 #
+#	Line2   : Uaseco root                                           #
+#	Line3   : Shedule time (HH:MM:SS)                               #
+#	Line4-6 : DONT TOUCH !!!                                        #
+#	Line7   : TitlePack                                             #
+#	Line8   : MatchSettings File                                    #
+#	Line9   : Dedicated_cfg File                                    #
+# 																    #
+#####################################################################

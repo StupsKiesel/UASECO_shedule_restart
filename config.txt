@@ -1,0 +1,9 @@
+C:\Users\Administrator\Documents\TM2serv_uaseco
+C:\Users\Administrator\Documents\TM2serv_uaseco\uaseco
+24:00:00
+webrequest.bat
+uaseco.bat
+MANIAPLANETSERVER CONFIG:
+TMStadium 
+MatchSettings/matchsettings.txt
+dedicated_cfg.txt
