@@ -1,6 +1,6 @@
 ### Script Settings ###
-Dedicated Server Root=C:\Users\Administrator\Documents\TM2serv_uaseco
-Server Controller Root=C:\Users\Administrator\Documents\TM2serv_uaseco\uaseco
+Dedicated Server Root=C:\Users\admin\Desktop\UASECO_shedule_restart\restart_v0.6\uaseco_starter_test
+Server Controller Root=C:\Users\admin\Desktop\UASECO_shedule_restart\restart_v0.6\uaseco_starter_test
 Restart Time=24:00:00
 
 ### Uaseco Settings ###
@@ -8,12 +8,18 @@ name of webrequest.bat=webrequest.bat
 name of uaseco.bat=uaseco.bat
 
 ### Mania Planet Server Settings ###
-MPS.exe Name=ManiaPlanetServer.exe
+MPS.exe Name=ManiaPlanetServer.bat
 Title Pack=TMStadium 
 Match Settings File=MatchSettings/matchsettings.txt
 Dedicated Config File=dedicated_cfg.txt
 
 ### Dev Settings ###
-Uaseco Output=false
+Controller output options: 0 = no output; 1 = output; 2 = output to controller_output.txt
+Contr. Output=1
 Debug Info=true
 
+### Controaller Settings ###
+set witch controller you are use
+0 = Uaseco; 1 = any other
+controller=0
+executeable=run.bat

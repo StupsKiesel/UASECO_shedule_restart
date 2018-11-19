@@ -4,6 +4,7 @@ rem set to "on" or "off" to see all the output or not
 rem saves the curent location to value in order to know where to save the log file
 set "batch_path=%cd%"
 
+mode con: cols=120 lines=55
 rem starting frame
 set /p Build=<version.txt
 type starter.txt
@@ -31,6 +32,11 @@ rem import config
   set /p line18=
   set /p line19=
   set /p line20=
+  set /p line21=
+  set /p line22=
+  set /p line23=
+  set /p line24=
+  set /p line25=
 )
 
 rem stripping start info of every used line
@@ -44,9 +50,14 @@ set mps_exe=%line11:~13,999%
 set titlepack=%line12:~11,999%
 set matchsettings=%line13:~20,999%
 set dedicated_cfg=%line14:~22,999%
-set u_output=%line17:~14,999%
-set debug_info=%line18:~11,999%
+set u_output=%line18:~14,999%
+set debug_info=%line19:~11,999%
+set controller=%line24:~11,999%
+set any_controller=%line25:~12,999%
 set restart_count=0
+
+if %controller%==0 (set controller_view=Uaseco)
+if %controller%==1 (set controller_view=Other)
 rem shows the configuration
 echo -----------------------------------------------------------
 echo            Script Author  : SK               
@@ -58,12 +69,14 @@ echo    Server Controller Root : %path_to_controller%
 echo              Shedule Time : %restart_time%
 echo    Name of webrequest.bat : %name_of_webrequest%
 echo        Name of uaseco.bat : %name_of_uaseco%
+echo        if not uaseco then : %any_controller%
 echo -----------------------------------------------------------
 echo DEDICATED SERVER SETTINGS :
 echo                Server.exe : %mps_exe%
 echo                Title Pack : %titlepack%
 echo        MatchSettings File : %matchsettings%
 echo     Dedicated Config File : %dedicated_cfg%
+echo               Controaller : %controller_view%
 echo -----------------------------------------------------------
 
 rem TIME CALCULATING START
@@ -84,7 +97,7 @@ rem TIME CALCULATING END
 if %debug_info%==false (goto skip_debug_info) else (goto show_debug_info)
 :show_debug_info
 echo            DEBUGNING INFO :
-echo             Uaseco output : %u_output%
+echo         CONTROLLER OUTPUT : %u_output%
 echo         TIME NOW AS STAMP : %dtStamp%                 
 echo         SCRIPT START TIME : %STARTTIME%             
 echo       SERVER RESTART TIME : %ENDTIME%  
@@ -127,24 +140,37 @@ set /A TIMEOUT=%DURATION%-12
 rem TIME CALCULATING END
 
 echo %DURATION% SECONDS TO RESTART
+
+
 echo START MANIAPLANET SERVER
 cd "%path_to_server%"
 start %mps_exe% /title=%titlepack% /game_settings=%matchsettings% /dedicated_cfg=%dedicated_cfg%
 timeout /t 10 /nobreak
 :start_uaseco
-echo START UASECO SERVER CONTROLLER
-cd "%path_to_controller%"
+echo START SERVER CONTROLLER
 
-start /B %name_of_webrequest%
-timeout /t 2 /nobreak
+rem starting uaseco_starter.bat for uaseco or any other controller with or without output, depends on config
 
-rem starting uaseco with or without output, depends on config
-if %u_output%==false (set "u_para=>NUL") else (set "u_para=")
-start /B %name_of_uaseco% %u_para%
+if %controller%==0 (set %name_of_uaseco%=SK_uaseco_starter.bat)
+if %controller%==1 (set %name_of_uaseco%=%any_controller%)
+
+
+
+
+
+
+
+
+
+
+if %u_output%==0 (set "u_para=>NUL") 
+if %u_output%==1 (set "u_para=") 
+if %u_output%==2 (set "u_para=>controller_output.txt")
+start /B %name_of_uaseco%%u_para%
 
 echo %TIMEOUT% SECONDS TO RESTART
 timeout /t %TIMEOUT% /nobreak
-echo KILLING MANIAPLANETSERVER AND UASECO
+echo KILLING MANIAPLANETSERVER AND CONTROLLER
 
 rem this will kill server controller and dedicated server
 tasklist /V /FI "WINDOWTITLE eq uaseco" | find /I "uaseco" >NUL && (taskkill /FI "WINDOWTITLE eq uaseco" /T /F)
@@ -153,7 +179,7 @@ taskkill /im ManiaPlanetServer.exe /f
 timeout /t 15 /nobreak
 
 rem counting the restarts 
-set restart_count=%restart_count%+1
+set /A restart_count=%restart_count%+1
 
 rem saving the restart count in a log file
 cd %batch_path%
@@ -162,7 +188,7 @@ set "write1=Total Restart Count till crash: %restart_count%"
   echo %write1%
 ) > log.txt
 
-rem reading config for next run
+rem reading config for nxt run
 < config.txt (
   set /p line1=
   set /p line2=
@@ -184,6 +210,11 @@ rem reading config for next run
   set /p line18=
   set /p line19=
   set /p line20=
+  set /p line21=
+  set /p line22=
+  set /p line23=
+  set /p line24=
+  set /p line25=
 )
 
 rem stripping start info of every used line
@@ -197,8 +228,9 @@ set mps_exe=%line11:~13,999%
 set titlepack=%line12:~11,999%
 set matchsettings=%line13:~20,999%
 set dedicated_cfg=%line14:~22,999%
-set u_output=%line17:~14,999%
-set debug_info=%line18:~11,999%
+set u_output=%line18:~14,999%
+set debug_info=%line19:~11,999%
+set controller=%line24:~11,999%
 
 echo -----------------------------------------------------------
 echo           SCRIPT SETTINGS :
