@@ -1,9 +1,19 @@
-C:\Users\Administrator\Documents\TM2serv_uaseco
-C:\Users\Administrator\Documents\TM2serv_uaseco\uaseco
-24:00:00
-webrequest.bat
-uaseco.bat
-MANIAPLANETSERVER CONFIG:
-TMStadium 
-MatchSettings/matchsettings.txt
-dedicated_cfg.txt
+### Script Settings ###
+Dedicated Server Root=C:\Users\Administrator\Documents\TM2serv_uaseco
+Server Controller Root=C:\Users\Administrator\Documents\TM2serv_uaseco\uaseco
+Restart Time=24:00:00
+
+### Uaseco Settings ###
+name of webrequest.bat=webrequest.bat
+name of uaseco.bat=uaseco.bat
+
+### Mania Planet Server Settings ###
+MPS.exe Name=ManiaPlanetServer.exe
+Title Pack=TMStadium 
+Match Settings File=MatchSettings/matchsettings.txt
+Dedicated Config File=dedicated_cfg.txt
+
+### Dev Settings ###
+Uaseco Output=false
+Debug Info=true
+
